@@ -56,7 +56,6 @@ dependencies {
     implementation deps.retrofit.rx_java2
     implementation deps.okhttp_logging_interceptor
 
-
     //Kotlin
     implementation deps.kotlin.stdlib
     implementation deps.kotlin.coroutines_core
@@ -67,17 +66,13 @@ dependencies {
     implementation deps.rx_android
     implementation deps.photo_view
 
-
     //Test
     testImplementation deps.kotlin.test
     testImplementation deps.junit
     androidTestImplementation deps.espresso_core
     androidTestImplementation deps.test_runner
 
-
-
-
-   /* implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    /* implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
