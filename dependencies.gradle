@@ -23,12 +23,13 @@ support.recycler_view = "com.android.support:recyclerview-v7:$versions.support"
 support.card_view = "com.android.support:cardview-v7:$versions.support"
 support.v4 = "com.android.support:support-v4:$versions.support"
 support.transition = "com.android.support:transition:$versions.support"
+support.design = "com.android.support:design:$versions.support"
 deps.support = support
 
 def lifecycle = [:]
 lifecycle.extensions = "android.arch.lifecycle:extensions:$versions.arch"
 lifecycle.compiler = "android.arch.lifecycle:compiler:$versions.arch"
-deps.lifeycler = lifecycle
+deps.lifecycle = lifecycle
 
 def dagger = [:]
 dagger.runtime = "com.google.dagger:dagger:$versions.dagger"
