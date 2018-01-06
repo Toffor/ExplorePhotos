@@ -4,12 +4,16 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
-    compileSdkVersion 26
+    compileSdkVersion build_versions.target_sdk
+    buildToolsVersion build_versions.build_tools
+
     defaultConfig {
         applicationId "com.example.coskun.exploremovies"
-        minSdkVersion 16
-        targetSdkVersion 26
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -20,14 +24,63 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    kotlin {
+        experimental {
+            coroutines 'enable'
+        }
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    //Support
+    implementation deps.support.app_compat
+    implementation deps.support.annotations
+    implementation deps.support.recycler_view
+    implementation deps.support.card_view
+    implementation deps.support.v4
+    implementation deps.support.transition
+
+    //Dagger
+    implementation deps.dagger.runtime
+    implementation deps.dagger.android
+    implementation deps.dagger.android_support
+    kapt deps.dagger.compiler
+    kapt deps.dagger.android_support_compiler
+
+    //Retrofit
+    implementation deps.retrofit.runtime
+    implementation deps.retrofit.gson
+    implementation deps.retrofit.rx_java2
+    implementation deps.okhttp_logging_interceptor
+
+
+    //Kotlin
+    implementation deps.kotlin.stdlib
+    implementation deps.kotlin.coroutines_core
+    implementation deps.kotlin.coroutines_android
+
+    implementation deps.glide
+    implementation deps.timber
+    implementation deps.rx_android
+    implementation deps.photo_view
+
+
+    //Test
+    testImplementation deps.kotlin.test
+    testImplementation deps.junit
+    androidTestImplementation deps.espresso_core
+    androidTestImplementation deps.test_runner
+
+
+
+
+   /* implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'*/
 }
