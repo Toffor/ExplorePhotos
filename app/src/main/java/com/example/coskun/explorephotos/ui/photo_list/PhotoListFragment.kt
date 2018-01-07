@@ -41,6 +41,7 @@ class PhotoListFragment : BaseFragment(), Injectable{
     private lateinit var photoListViewModel: PhotoListViewModel
     private lateinit var suggestionAdapter: SuggestionAdapter
     private lateinit var suggestionList: ArrayList<String>
+    private lateinit var snackbar: Snackbar
 
     private val photoAdapter = PhotoAdapter{
         handleClick(it)
@@ -52,6 +53,7 @@ class PhotoListFragment : BaseFragment(), Injectable{
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        snackbar = Snackbar.make(coordinatorLayout, "", Snackbar.LENGTH_INDEFINITE)
         suggestionAdapter = SuggestionAdapter(context!!, null, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER)
         val layoutManager = object : GridLayoutManager(context, 2){
             override fun supportsPredictiveItemAnimations() = false
@@ -61,7 +63,7 @@ class PhotoListFragment : BaseFragment(), Injectable{
                 super.onScrolled(recyclerView, dx, dy)
                 val lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition()
                 val totalItemCount = layoutManager.itemCount
-                if (lastVisibleItemPosition > totalItemCount - 5 && totalItemCount != 0){
+                if (lastVisibleItemPosition > totalItemCount - 5 && totalItemCount != 0 && !snackbar.isShown){
                     photoListViewModel.fetchNextPage()
                 }
             }
@@ -131,11 +133,11 @@ class PhotoListFragment : BaseFragment(), Injectable{
     }
 
     private fun showError(errorMessage: String){
-        Snackbar.make(coordinatorLayout, errorMessage, Snackbar.LENGTH_INDEFINITE)
-                .setAction(getString(R.string.retry), {
-                    photoListViewModel.retry()
-                })
-                .show()
+        snackbar.setText(errorMessage).
+        setAction(getString(R.string.retry), {
+            photoListViewModel.retry()
+        }).show()
+
     }
 
     private fun handleClick(imageView: ImageView){
