@@ -3,22 +3,23 @@ package com.example.coskun.explorephotos.ui.PhotoDetails
 
 import android.content.Intent
 import android.graphics.Bitmap
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.support.transition.TransitionInflater
 import android.support.v4.app.Fragment
+import android.support.v4.content.FileProvider
 import android.view.View
 import com.example.coskun.explorephotos.BaseFragment
 import com.example.coskun.explorephotos.R
 import com.example.coskun.explorephotos.entensions.toByteArray
 import kotlinx.android.synthetic.main.fragment_photo_detail.*
+import java.io.File
 
 
 /**
  * A simple [Fragment] subclass.
  */
-class PhotoDetailFragment : BaseFragment() {
+class PhotoDetailFragment() : BaseFragment() {
 
     override fun getLayoutId() = R.layout.fragment_photo_detail
 
@@ -48,15 +49,19 @@ class PhotoDetailFragment : BaseFragment() {
     }
 
     private fun share(bitmap: Bitmap){
-        val file = createTempFile("share", "png", context!!.externalCacheDir)
-        file.setReadable(true)
-        file.writeBytes(bitmap.toByteArray())
+        val imageFile = File(context!!.cacheDir, "images/image.png")
+        imageFile.parentFile.mkdirs()
+        imageFile.writeBytes(bitmap.toByteArray())
+        val contentUri = FileProvider.getUriForFile(context!!, "com.example.coskun.explorephotos.fileprovider", imageFile)
         val intent = Intent(Intent.ACTION_SEND)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file))
-        intent.type = "image/png"
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        intent.setDataAndType(contentUri, activity!!.contentResolver.getType(contentUri))
+        intent.putExtra(Intent.EXTRA_STREAM, contentUri)
         startActivity(Intent.createChooser(intent, "Share image via"))
+
     }
+
+
 
     companion object {
 
