@@ -23,16 +23,19 @@ class SuggestionAdapter(context: Context, cursor: Cursor?, flag: Int) : CursorAd
         textView.text = cursor?.getString(cursor.getColumnIndexOrThrow("suggestion"))
     }
 
-    fun populateSuggestions(suggestions: ArrayList<String>, query: String){
+    fun populateSuggestions(suggestions: ArrayList<String>, query: String) : List<String>{
+        val filteredSuggestionList = mutableListOf<String>()
         val matrixCursor = MatrixCursor(arrayOf(BaseColumns._ID, "suggestion"))
         var count = 0
         val regex = Regex(createRegex(query))
         suggestions.forEach {
             if (it.matches(regex)){
+                filteredSuggestionList.add(it)
                 matrixCursor.addRow(arrayOf(count++, it))
             }
         }
         this.changeCursor(matrixCursor)
+        return filteredSuggestionList
     }
 
     private fun createRegex(query: String) : String{
@@ -43,4 +46,5 @@ class SuggestionAdapter(context: Context, cursor: Cursor?, flag: Int) : CursorAd
         }
         return sb.toString()
     }
+
 }

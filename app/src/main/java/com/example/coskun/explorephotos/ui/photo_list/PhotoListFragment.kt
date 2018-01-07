@@ -33,7 +33,7 @@ import javax.inject.Inject
  * Created by Coskun Yalcinkaya.
  */
 
-class PhotoListFragment : BaseFragment(), Injectable{
+class PhotoListFragment() : BaseFragment(), Injectable{
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     @Inject lateinit var navigator: Navigator
@@ -148,6 +148,7 @@ class PhotoListFragment : BaseFragment(), Injectable{
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         inflater!!.inflate(R.menu.search_menu, menu)
+        var filteredSuggestionList = listOf<String>()
         val searchMenuItem = menu!!.findItem(R.id.action_search)
         val searchView = searchMenuItem.actionView as SearchView
         searchView.suggestionsAdapter = suggestionAdapter
@@ -173,7 +174,7 @@ class PhotoListFragment : BaseFragment(), Injectable{
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 newText?.let {
-                    suggestionAdapter.populateSuggestions(suggestionList, newText)
+                    filteredSuggestionList = suggestionAdapter.populateSuggestions(suggestionList, newText)
                 }
                 return true
             }
@@ -184,7 +185,10 @@ class PhotoListFragment : BaseFragment(), Injectable{
             override fun onSuggestionSelect(position: Int) =  false
 
             override fun onSuggestionClick(position: Int): Boolean {
-                searchView.setQuery(suggestionList[position], true)
+                Timber.d(filteredSuggestionList.toString())
+                Timber.d(filteredSuggestionList[position])
+                Timber.d(position.toString())
+                searchView.setQuery(filteredSuggestionList[position], true)
                 return true
             }
 

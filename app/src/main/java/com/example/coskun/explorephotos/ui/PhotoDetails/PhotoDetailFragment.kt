@@ -48,13 +48,14 @@ class PhotoDetailFragment : BaseFragment() {
     }
 
     private fun share(bitmap: Bitmap){
-        val file = createTempFile("tmp", "png", context!!.externalCacheDir)
+        val file = createTempFile("share", "png", context!!.externalCacheDir)
+        file.setReadable(true)
         file.writeBytes(bitmap.toByteArray())
         val intent = Intent(Intent.ACTION_SEND)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK;
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file))
         intent.type = "image/png"
-        startActivity(Intent.createChooser(intent, "Share image via"));
+        startActivity(Intent.createChooser(intent, "Share image via"))
     }
 
     companion object {
