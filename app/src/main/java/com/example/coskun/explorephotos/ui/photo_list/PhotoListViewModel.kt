@@ -37,6 +37,7 @@ class PhotoListViewModel @Inject constructor(private val photoRepository: PhotoR
         lastAction = LastAction.GET_PHOTOS
         photoRepository.getPhotos(1, { response, nextPage ->
             photos.value = response
+            lastSearchedKeyword = null
             nextPageHandler.nextPage = nextPage
             nextPageHandler.keyword = null
         })

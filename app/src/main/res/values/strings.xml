@@ -13,6 +13,8 @@
 
     <string name="toolbar_title_photo_details">Photo Details</string>
 
-    <string name="tootlbar_title_photos">Photos</string>
+    <string name="toolbar_title_photos">Photos</string>
+
+    <string name="toolbar_search_hint">Search…</string>
 
 </resources>

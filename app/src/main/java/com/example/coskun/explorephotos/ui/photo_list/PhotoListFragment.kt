@@ -3,6 +3,7 @@ package com.example.coskun.explorephotos.ui.photo_list
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
+import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.os.Build
 import android.os.Bundle
@@ -16,6 +17,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.EditText
 import android.widget.ImageView
 import com.example.coskun.explorephotos.BaseFragment
 import com.example.coskun.explorephotos.MainActivity
@@ -49,7 +51,7 @@ class PhotoListFragment() : BaseFragment(), Injectable{
 
     override fun getLayoutId() = R.layout.fragment_photo_list
 
-    override fun getToolbarTitle() = R.string.tootlbar_title_photos
+    override fun getToolbarTitle() = R.string.toolbar_title_photos
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -152,6 +154,10 @@ class PhotoListFragment() : BaseFragment(), Injectable{
         val searchMenuItem = menu!!.findItem(R.id.action_search)
         val searchView = searchMenuItem.actionView as SearchView
         searchView.suggestionsAdapter = suggestionAdapter
+        val editText = searchView.findViewById<EditText>(android.support.v7.appcompat.R.id.search_src_text)
+        editText.setHint(R.string.toolbar_search_hint)
+        editText.setTextColor(Color.WHITE)
+        editText.setHintTextColor(Color.WHITE)
         searchView.setOnSearchClickListener({
             val fadeTransition = Fade()
             fadeTransition.duration = 1500
