@@ -1,5 +1,4 @@
 package com.example.coskun.explorephotos.ui.photo_list
-
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
@@ -55,11 +54,15 @@ class PhotoListFragment() : BaseFragment(), Injectable{
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         snackbar = Snackbar.make(coordinatorLayout, "", Snackbar.LENGTH_INDEFINITE)
+
         suggestionAdapter = SuggestionAdapter(context!!, null, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER)
+
         val layoutManager = object : GridLayoutManager(context, 2){
             override fun supportsPredictiveItemAnimations() = false
         }
+
         rv_photo.addOnScrollListener(object : RecyclerView.OnScrollListener(){
             override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
@@ -70,6 +73,7 @@ class PhotoListFragment() : BaseFragment(), Injectable{
                 }
             }
         })
+
         rv_photo.layoutManager = layoutManager
         rv_photo.addItemDecoration(SpaceItemDecoration(resources.getDimensionPixelSize(R.dimen.margin_small)))
         rv_photo.adapter = photoAdapter
@@ -199,8 +203,6 @@ class PhotoListFragment() : BaseFragment(), Injectable{
             }
 
         })
-
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -213,5 +215,4 @@ class PhotoListFragment() : BaseFragment(), Injectable{
     companion object {
         fun newInstance() = PhotoListFragment()
     }
-
 }

@@ -51,7 +51,7 @@ class PhotoRepository @Inject constructor(private val flickrService: FlickrServi
     }
 
     fun searchPhotos(keyword: String, page: Int, callback: (Response<List<Photo>>, Int) -> Unit){
-        Timber.d(keyword)
+        Timber.d("$keyword $page")
         compositeDisposable.add(flickrService.searchPhoto(keyword, page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

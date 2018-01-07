@@ -13,7 +13,12 @@
             android:id="@+id/rv_photo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/margin_normal" />
+            android:layout_margin="@dimen/margin_normal"
+            app:fastScrollEnabled="true"
+            app:fastScrollHorizontalThumbDrawable="@drawable/thumb_drawable"
+            app:fastScrollHorizontalTrackDrawable="@drawable/line_drawable"
+            app:fastScrollVerticalThumbDrawable="@drawable/thumb_drawable"
+            app:fastScrollVerticalTrackDrawable="@drawable/line_drawable"/>
 
         <android.support.v4.widget.ContentLoadingProgressBar
             android:id="@+id/prg_loading"
