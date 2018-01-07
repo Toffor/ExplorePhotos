@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.AppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/txt_suggestion"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/text_view_height"
+    android:gravity="center_vertical"
+    android:paddingLeft="@dimen/margin_big"
+    android:paddingRight="@dimen/margin_big"
+    android:textStyle="bold"
+    android:textSize="@dimen/text_size_normal"
+    tools:text="Suggestion" />
+

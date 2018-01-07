@@ -1,4 +1,4 @@
-package com.example.coskun.exploremovies
+package com.example.coskun.explorephotos
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

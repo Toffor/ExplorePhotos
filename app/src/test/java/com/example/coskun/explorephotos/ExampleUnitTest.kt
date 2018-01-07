@@ -1,4 +1,4 @@
-package com.example.coskun.exploremovies
+package com.example.coskun.explorephotos
 
 import org.junit.Test
 

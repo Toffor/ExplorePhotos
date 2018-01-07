@@ -1,0 +1,44 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coordinatorLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.coskun.explorephotos.ui.photo_list.PhotoListFragment">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_photo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/margin_normal" />
+
+        <android.support.v4.widget.ContentLoadingProgressBar
+            android:id="@+id/prg_loading"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            style="?android:attr/progressBarStyleSmall"/>
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/img_noDataFound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:srcCompat="@drawable/no_data_found"
+            android:visibility="gone"/>
+
+        <android.support.v4.widget.ContentLoadingProgressBar
+            android:id="@+id/prg_loadMoreState"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/margin_normal"
+            android:visibility="gone"
+            style="?android:attr/progressBarStyleSmall"/>
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>
