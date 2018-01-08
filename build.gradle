@@ -3,10 +3,6 @@
 buildscript {
     apply from: 'dependencies.gradle'
     addRepos(repositories)
-    repositories {
-        google()
-        jcenter()
-    }
     dependencies {
         classpath deps.android_gradle_plugin
         classpath deps.kotlin.plugin
@@ -22,8 +18,4 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
-}
-
-repositories {
-    google()
 }
