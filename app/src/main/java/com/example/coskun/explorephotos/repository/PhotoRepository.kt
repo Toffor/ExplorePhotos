@@ -37,7 +37,7 @@ class PhotoRepository @Inject constructor(private val flickrService: FlickrServi
                             "ok" -> {
                                 val currentPage = photoResponse.photos!!.page
                                 val totalPage = photoResponse.photos!!.totalPages
-                                val nextPage = if (currentPage < totalPage) currentPage + 1 else page
+                                val nextPage = if (currentPage < totalPage) currentPage + 1 else 0
                                 callback.invoke(Response.success(photoResponse.photos?.photoList ?: mutableListOf()), nextPage)
                             }
                             else -> callback.invoke(Response.error(photoResponse.errorMessage), page)
@@ -63,7 +63,7 @@ class PhotoRepository @Inject constructor(private val flickrService: FlickrServi
                             "ok" -> {
                                 val currentPage = photoResponse.photos!!.page
                                 val totalPage = photoResponse.photos!!.totalPages
-                                val nextPage = if (currentPage < totalPage) currentPage + 1 else page
+                                val nextPage = if (currentPage < totalPage) currentPage + 1 else 0
                                 callback.invoke(Response.success(photoResponse.photos?.photoList ?: mutableListOf()), nextPage)
                             }
                             else -> callback.invoke(Response.error(photoResponse.errorMessage), page)

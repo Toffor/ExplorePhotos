@@ -29,6 +29,11 @@ class PhotoListViewModel @Inject constructor(private val photoRepository: PhotoR
         photos.value = Response.success(mergedList)
     }
 
+    fun getPhotoList() : LiveData<Response<List<Photo>>> = photos
+
+    fun getLoadMoreState() : LiveData<LoadMoreState?> = nextPageHandler.getLoadMoreState()
+
+
     fun getPhotos() = getPhotos(true)
 
     fun getPhotos(initialize: Boolean) {
@@ -41,10 +46,8 @@ class PhotoListViewModel @Inject constructor(private val photoRepository: PhotoR
             nextPageHandler.nextPage = nextPage
             nextPageHandler.keyword = null
         })
-
     }
 
-    fun getLoadMoreState() : LiveData<LoadMoreState?> = nextPageHandler.getLoadMoreState()
 
     fun searchPhoto(keyword: String){
         searchPhoto(keyword, false)
@@ -63,7 +66,10 @@ class PhotoListViewModel @Inject constructor(private val photoRepository: PhotoR
         }
     }
 
-    fun fetchNextPage() = nextPageHandler.fetchNextPage()
+    fun fetchNextPage(){
+        lastAction = LastAction.FETCH_NEXT_PAGE
+        nextPageHandler.fetchNextPage()
+    }
 
 
     fun retry(){
@@ -148,8 +154,6 @@ class PhotoListViewModel @Inject constructor(private val photoRepository: PhotoR
         }
     }
 
-
-    fun getPhotoList() : LiveData<Response<List<Photo>>> = photos
 
     override fun onCleared() = photoRepository.clearDisposables()
 

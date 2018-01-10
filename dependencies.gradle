@@ -15,6 +15,7 @@ versions.photo_view = "2.1.3"
 versions.junit = "4.12"
 versions.espresso = "3.0.1"
 versions.atsl_runner = "1.0.1"
+versions.atsl_rules = "1.0.1"
 
 def support = [:]
 support.annotations = "com.android.support:support-annotations:$versions.support"
@@ -54,6 +55,11 @@ kotlin.coroutines_core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version
 kotlin.coroutines_android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.kotlin_coroutines"
 deps.kotlin = kotlin
 
+def atsl = [:]
+atsl.runner = "com.android.support.test:runner:$versions.atsl_runner"
+atsl.rules = "com.android.support.test:rules:$versions.atsl_runner"
+deps.atsl = atsl
+
 deps.glide = "com.github.bumptech.glide:glide:$versions.glide"
 deps.timber = "com.jakewharton.timber:timber:$versions.timber"
 deps.rx_android = "io.reactivex.rxjava2:rxandroid:$versions.rx_android"
@@ -61,7 +67,6 @@ deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_g
 deps.photo_view = "com.github.chrisbanes:PhotoView:$versions.photo_view"
 deps.junit = "junit:junit:$versions.junit"
 deps.espresso_core = "com.android.support.test.espresso:espresso-core:$versions.espresso"
-deps.test_runner = "com.android.support.test:runner:$versions.atsl_runner"
 ext.deps = deps
 
 def build_versions = [:]

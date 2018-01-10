@@ -51,8 +51,6 @@ dependencies {
 
     //Architecture Components
     implementation deps.lifecycle.extensions
-    implementation 'com.android.support:support-v4:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     kapt deps.lifecycle.compiler
 
     //Dagger
@@ -79,15 +77,12 @@ dependencies {
     implementation deps.photo_view
 
     //Test
-    testImplementation deps.kotlin.test
     testImplementation deps.junit
+    testImplementation deps.atsl.runner
+    testImplementation deps.atsl.rules
+    testImplementation "android.arch.core:core-testing:1.0.0"
     androidTestImplementation deps.espresso_core
-    androidTestImplementation deps.test_runner
+    testImplementation "com.nhaarman:mockito-kotlin:1.5.0"
 
-    /* implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'*/
+
 }
